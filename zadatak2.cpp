@@ -20,9 +20,9 @@ void printBits(unsigned short reg) {
 
 
 int main() {
+  unsigned short reg1 = 0, reg2 = 0;
   
   while(true) {
-    unsigned short reg1 = 0, reg2 = 0;
     std::cout << "1. Print register" << std::endl;
     std::cout << "2. Set bit in register" << std::endl;
     std::cout << "3. Reset bit in register" << std::endl;
@@ -44,11 +44,11 @@ int main() {
       std::cin >> x;
     } while (x != 1 && x != 2);
 
-    unsigned short reg_arr[2] = {reg1, reg2};
-    unsigned short& registry = reg_arr[x-1];
+    static unsigned short* reg_arr[2] = {&reg1, &reg2};
+    static unsigned short* registry = reg_arr[x-1];
   
     if (option == 1) { 
-      printBits(registry);
+      printBits(*registry);
     } else 
   
     if (option == 2) {
@@ -56,8 +56,8 @@ int main() {
       std::cout << "Enter bit number: ";
       std::cin >> bit;
       
-      registry += pow(2, bit);
-      printBits(registry);
+      *registry += pow(2, bit);
+      printBits(*registry);
     } else 
     
     if (option == 3) {
