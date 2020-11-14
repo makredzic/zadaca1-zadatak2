@@ -31,7 +31,7 @@ int main() {
       std::cin >> x;
     } while (x != 1 && x != 2);
 
-    static unsigned short *reg_arr[] = {&reg1, &reg2};
+    unsigned short *reg_arr[] = {&reg1, &reg2};
     unsigned short *registry = reg_arr[x-1];
     
     std::cout << "1. Print register" << std::endl;
@@ -54,19 +54,25 @@ int main() {
       std::cin >> bit;
 
       *registry += pow(2, bit);
+      std::cout << "New register value: " << *registry << std::endl;
       printBits(*registry);
     } else 
     
     if (option == 3) {
-      //
-      // Vas kod ovdje
-      //
+      unsigned short bit;
+      std::cout << "Enter bit number: ";
+      std::cin >> bit;
+
+      *registry -= pow(2, bit);
+      std::cout << "New register value: " << *registry << std::endl;
+      printBits(*registry);
     }  else 
     
     if (option == 4) {
-      //
-      // Vas kod ovdje
-      //
+      reg1 = reg1 ^ reg2;
+      reg2 = reg1 ^ reg2;
+      reg1 = reg1 ^ reg2;
+      std::cout << "Registers 1 and 2 have been swapped.\n";
     } else
 
     if (option == 5) {
