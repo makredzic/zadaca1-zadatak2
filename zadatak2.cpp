@@ -23,19 +23,6 @@ int main() {
   unsigned short reg1 = 0, reg2 = 0;
   
   while(true) {
-    std::cout << "1. Print register" << std::endl;
-    std::cout << "2. Set bit in register" << std::endl;
-    std::cout << "3. Reset bit in register" << std::endl;
-    std::cout << "4. Swap registries" << std::endl;
-    std::cout << "5. Exit" << std::endl;
-    std::cout << "Enter option: ";
-    int option;
-    std::cin >> option;
-    
-    if (option == 5) {
-      break;
-    }
-
     unsigned short x;
     do {
       std::cout << "Choose which registry:" << std::endl;
@@ -44,9 +31,19 @@ int main() {
       std::cin >> x;
     } while (x != 1 && x != 2);
 
-    static unsigned short* reg_arr[2] = {&reg1, &reg2};
-    static unsigned short* registry = reg_arr[x-1];
-  
+    static unsigned short *reg_arr[] = {&reg1, &reg2};
+    unsigned short *registry = reg_arr[x-1];
+    
+    std::cout << "1. Print register" << std::endl;
+    std::cout << "2. Set bit in register" << std::endl;
+    std::cout << "3. Reset bit in register" << std::endl;
+    std::cout << "4. Swap registries" << std::endl;
+    std::cout << "5. Exit" << std::endl;
+    std::cout << "Enter option: ";
+    int option;
+    std::cin >> option;
+
+    
     if (option == 1) { 
       printBits(*registry);
     } else 
@@ -55,7 +52,7 @@ int main() {
       unsigned short bit;
       std::cout << "Enter bit number: ";
       std::cin >> bit;
-      
+
       *registry += pow(2, bit);
       printBits(*registry);
     } else 
@@ -70,7 +67,12 @@ int main() {
       //
       // Vas kod ovdje
       //
+    } else
+
+    if (option == 5) {
+      break;
     }
+    
     std::cout << std::endl;
   }
 
