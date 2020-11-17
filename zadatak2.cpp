@@ -53,7 +53,13 @@ int main() {
       std::cout << "Enter bit number: ";
       std::cin >> bit;
 
-      *registry += pow(2, bit);
+      *registry |= 1 << bit; //number 1 is converted to 16bit binary 
+      //then shifted to location bit 000000000000001 => 0000000000000100 for bit = 2
+      // then each bit is compared using OR | with the number in registry and is stored there again
+      // so registry = 0000000000000 
+      //             | 0000000000100
+      //            ------------------
+      //    registry = 0000000000100
       std::cout << "New register value: " << *registry << std::endl;
       printBits(*registry);
     } else 
@@ -63,7 +69,8 @@ int main() {
       std::cout << "Enter bit number: ";
       std::cin >> bit;
 
-      *registry -= pow(2, bit);
+      *registry &= ~(1<<bit); //1 is shifted to left by bit and then all zeros are inverted to one and vice versa
+      // after that each bit is compared to the registry number in bits but with AND instead of OR
       std::cout << "New register value: " << *registry << std::endl;
       printBits(*registry);
     }  else 
